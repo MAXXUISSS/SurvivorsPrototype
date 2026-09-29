@@ -8,11 +8,19 @@ public class PlayerMovement : MonoBehaviour
     
     private Vector2 movement;
     
-    void Update()
+    private Rigidbody2D rb;
+
+
+    private void Awake()
     {
-        transform.position += (Vector3)(moveInput * speed * Time.deltaTime);
+        rb = GetComponent<Rigidbody2D>();
     }
 
+    private void FixedUpdate()
+    {
+        rb.linearVelocity = moveInput * speed;
+    }
+    
     public void OnMove(InputValue value)
     {
         moveInput =  value.Get<Vector2>().normalized;
