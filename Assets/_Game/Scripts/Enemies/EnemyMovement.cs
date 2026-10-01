@@ -32,6 +32,10 @@ public class EnemyMovement : MonoBehaviour
     {
         Debug.Log("Enemy touched something");
     }
+    public void SetTarget(Transform target)
+    {
+        this.target = target;
+    }
 
 
 }
