@@ -3,14 +3,16 @@ using UnityEngine;
 public class MovementSpeedUpgrade : IUpgrade
 {
     private PlayerMovement playerMovement;
+    private UpgradeData data;
 
-    public MovementSpeedUpgrade(PlayerMovement playerMovement)
+    public MovementSpeedUpgrade(PlayerMovement playerMovement, UpgradeData upgradeData)
     {
         this.playerMovement = playerMovement;
+        this.data = upgradeData;
     }
 
     public void Apply()
     {
-        playerMovement.IncreaseMovementSpeed(0.5f);
+        playerMovement.IncreaseMovementSpeed(data.Value);
     }
 }

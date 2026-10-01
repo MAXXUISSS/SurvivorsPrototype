@@ -1,16 +1,22 @@
 using UnityEngine;
 
-public class AttackSpeedUpgrade :  IUpgrade
+public class AttackSpeedUpgrade : IUpgrade
 {
     private PlayerAttack playerAttack;
+    private UpgradeData data; 
 
-    public AttackSpeedUpgrade(PlayerAttack playerAttack)
+    public AttackSpeedUpgrade(
+        PlayerAttack playerAttack,
+        UpgradeData data)
     {
         this.playerAttack = playerAttack;
+        this.data = data;
     }
 
     public void Apply()
     {
-        playerAttack.IncreaseAttackSpeed(0.1f);
+        Debug.Log("Attack Speed Upgrade Value: " + data.Value);
+
+        Debug.Log("ATTACKSPEED UPGRADE" + data.Value);
     }
 }

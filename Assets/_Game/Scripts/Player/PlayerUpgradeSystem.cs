@@ -11,6 +11,10 @@ public class PlayerUpgradeSystem : MonoBehaviour
     private List<IUpgrade> upgrades;
      private List<IUpgrade> availableUpgrades;
      private List<IUpgrade> upgradeOptions;
+     
+     [SerializeField] private UpgradeData damageData;
+     [SerializeField] private UpgradeData attackSpeedData;
+     [SerializeField] private UpgradeData movementSpeedData;
 
     private void Awake()
     {
@@ -19,9 +23,9 @@ public class PlayerUpgradeSystem : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         upgrades = new List<IUpgrade>
         {
-            new DamageUpgrade(playerAttack),
-            new AttackSpeedUpgrade(playerAttack),
-            new MovementSpeedUpgrade(playerMovement)
+            new DamageUpgrade(playerAttack, damageData),
+            new AttackSpeedUpgrade(playerAttack, attackSpeedData),
+            new MovementSpeedUpgrade(playerMovement, movementSpeedData)
         };
     }
     
