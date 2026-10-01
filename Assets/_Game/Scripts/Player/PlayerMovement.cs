@@ -26,4 +26,9 @@ public class PlayerMovement : MonoBehaviour
         moveInput =  value.Get<Vector2>().normalized;
         
     }
+    
+    public void IncreaseMovementSpeed(float amount)
+    {
+        speed += amount;
+    }
 }

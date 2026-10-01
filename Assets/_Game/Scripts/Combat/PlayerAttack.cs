@@ -51,4 +51,15 @@ public class PlayerAttack : MonoBehaviour
             
         }
     }
+    
+    public void IncreaseDamage(int amount)
+    {
+        damage += amount;
+        Debug.Log("Damage: " + damage);
+    }
+    
+    public void IncreaseAttackSpeed(float amount)
+    {
+        attackInterval = Mathf.Max(0.1f, attackInterval - amount);
+    }
 }
