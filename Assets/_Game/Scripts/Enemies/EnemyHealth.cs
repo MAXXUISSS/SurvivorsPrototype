@@ -1,10 +1,12 @@
 using UnityEngine;
-
+using System;
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
    [SerializeField] private int maxHealth;
    
    private int currentHealth;
+   
+   public event Action OnDied;
    
    private void Awake()
    {
@@ -23,6 +25,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         {
             currentHealth = 0;
             Debug.Log("Enemy Died");
+            OnDied?.Invoke();
             Destroy(gameObject);
         }
     }
