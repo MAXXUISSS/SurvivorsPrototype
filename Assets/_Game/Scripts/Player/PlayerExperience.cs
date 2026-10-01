@@ -24,6 +24,7 @@ public class PlayerExperience : MonoBehaviour
     {
         currentLevel++;
         currentExperience -= experienceToNextLevel;
+        experienceToNextLevel += 5;
 
         Debug.Log("Level Up! Level: " + currentLevel);
     }
