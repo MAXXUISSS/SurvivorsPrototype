@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ee2013df876b2d47968325fb05b98d0, type: 3}
   m_Name: AttackSpeed
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
+  upgradeType: 1
   displayName: Attack Speed Upgraed
   description: Improves Player Attack Speed
   icon: {fileID: 0}
-  value: 2
+  value: 0.1

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ee2013df876b2d47968325fb05b98d0, type: 3}
   m_Name: MovementSpeed
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
+  upgradeType: 2
   displayName: Movement Speed
   description: Improves Player Movement
   icon: {fileID: 0}

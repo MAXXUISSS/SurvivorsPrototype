@@ -317,6 +317,7 @@ GameObject:
   - component: {fileID: 576816214}
   - component: {fileID: 576816215}
   - component: {fileID: 576816216}
+  - component: {fileID: 576816217}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -552,6 +553,22 @@ MonoBehaviour:
   currentExperience: 0
   currentLevel: 1
   experienceToNextLevel: 10
+--- !u!114 &576816217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576816207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0fed215f92adda40a73bf36ad10530e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerUpgradeSystem
+  upgradeData:
+  - {fileID: 11400000, guid: a87f508c80d1e5d458b52b21fa70753b, type: 2}
+  - {fileID: 11400000, guid: 834ec5edeb20e4943a0a5c7fe4b8dc65, type: 2}
+  - {fileID: 11400000, guid: db22cefc74263084a9fad7381bcf42cd, type: 2}
 --- !u!1 &1732578514
 GameObject:
   m_ObjectHideFlags: 0
