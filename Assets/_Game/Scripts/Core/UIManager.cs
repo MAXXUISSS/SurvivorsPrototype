@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         Initialize(playerUpgradeSystem);
+
+        upgradeSelectionUI.OnUpgradeSelected += HandleUpgradeSelected;
     }
 
     private void Initialize(PlayerUpgradeSystem upgradeSystem)
@@ -19,11 +21,16 @@ public class UIManager : MonoBehaviour
 
     private void ShowUpgradeSelection()
     {
-        Debug.Log("UIManager: Showing upgrade selection");
-
         upgradeSelectionUI.Show(
             playerUpgradeSystem.UpgradeOptions
         );
+    }
+
+    private void HandleUpgradeSelected(int index)
+    {
+        playerUpgradeSystem.SelectUpgrade(index);
+
+        HideUpgradeSelection();
     }
 
     public void HideUpgradeSelection()
@@ -36,6 +43,11 @@ public class UIManager : MonoBehaviour
         if (playerUpgradeSystem != null)
         {
             playerUpgradeSystem.OnUpgradeOptionsGenerated -= ShowUpgradeSelection;
+        }
+
+        if (upgradeSelectionUI != null)
+        {
+            upgradeSelectionUI.OnUpgradeSelected -= HandleUpgradeSelected;
         }
     }
 }

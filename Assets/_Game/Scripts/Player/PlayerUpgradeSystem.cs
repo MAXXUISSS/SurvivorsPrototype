@@ -82,6 +82,8 @@ public class PlayerUpgradeSystem : MonoBehaviour
     {
         if (index >= 0 && index < upgradeOptions.Count)
         {
+            Debug.Log("Applying upgrade: " + upgradeOptions[index]);
+
             upgradeOptions[index].Apply();
         }
     }
