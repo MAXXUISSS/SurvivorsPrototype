@@ -3,22 +3,45 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private UpgradeSelectionUI upgradeSelectionUI;
-    [SerializeField] private PlayerUpgradeSystem playerUpgradeSystem;
-    
     [SerializeField] private GameManager gameManager;
 
-    private void Awake()
-    {
-        Initialize(playerUpgradeSystem);
+    private PlayerUpgradeSystem playerUpgradeSystem;
 
-        upgradeSelectionUI.OnUpgradeSelected += HandleUpgradeSelected;
+    private void OnEnable()
+    {
+        gameManager.OnPlayerSpawned += Initialize;
+
+        upgradeSelectionUI.OnUpgradeSelected +=
+            HandleUpgradeSelected;
     }
 
-    private void Initialize(PlayerUpgradeSystem upgradeSystem)
+    private void OnDisable()
     {
-        playerUpgradeSystem = upgradeSystem;
+        if (gameManager != null)
+        {
+            gameManager.OnPlayerSpawned -= Initialize;
+        }
 
-        playerUpgradeSystem.OnUpgradeOptionsGenerated += ShowUpgradeSelection;
+        if (upgradeSelectionUI != null)
+        {
+            upgradeSelectionUI.OnUpgradeSelected -=
+                HandleUpgradeSelected;
+        }
+
+        if (playerUpgradeSystem != null)
+        {
+            playerUpgradeSystem.OnUpgradeOptionsGenerated -=
+                ShowUpgradeSelection;
+        }
+    }
+
+    private void Initialize(GameObject playerObject)
+    {
+        playerUpgradeSystem =
+            playerObject.GetComponent<PlayerUpgradeSystem>();
+
+        playerUpgradeSystem.OnUpgradeOptionsGenerated +=
+            ShowUpgradeSelection;
     }
 
     private void ShowUpgradeSelection()
@@ -40,18 +63,5 @@ public class UIManager : MonoBehaviour
     public void HideUpgradeSelection()
     {
         upgradeSelectionUI.Hide();
-    }
-
-    private void OnDestroy()
-    {
-        if (playerUpgradeSystem != null)
-        {
-            playerUpgradeSystem.OnUpgradeOptionsGenerated -= ShowUpgradeSelection;
-        }
-
-        if (upgradeSelectionUI != null)
-        {
-            upgradeSelectionUI.OnUpgradeSelected -= HandleUpgradeSelected;
-        }
     }
 }

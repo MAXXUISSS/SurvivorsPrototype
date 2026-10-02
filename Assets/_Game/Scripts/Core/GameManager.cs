@@ -1,8 +1,11 @@
 using UnityEngine;
-
+using System;
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private PlayerUpgradeSystem playerUpgradeSystem;
+    [SerializeField] private PlayerSpawner playerSpawner;
+
+    private PlayerUpgradeSystem playerUpgradeSystem;
+    public event Action<GameObject> OnPlayerSpawned;
 
     public float ElapsedTime { get; private set; }
 
@@ -14,14 +17,35 @@ public class GameManager : MonoBehaviour
         ApplyState(CurrentState);
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        playerUpgradeSystem.OnUpgradeOptionsGenerated += HandleUpgradeOptionsGenerated;
+        GameObject player = playerSpawner.SpawnPlayer();
+
+        playerUpgradeSystem =
+            player.GetComponent<PlayerUpgradeSystem>();
+
+        if (playerUpgradeSystem == null)
+        {
+            Debug.LogError(
+                "Player prefab does not have PlayerUpgradeSystem."
+            );
+
+            return;
+        }
+
+        playerUpgradeSystem.OnUpgradeOptionsGenerated +=
+            HandleUpgradeOptionsGenerated;
+
+        OnPlayerSpawned?.Invoke(player);
     }
 
     private void OnDisable()
     {
-        playerUpgradeSystem.OnUpgradeOptionsGenerated -= HandleUpgradeOptionsGenerated;
+        if (playerUpgradeSystem != null)
+        {
+            playerUpgradeSystem.OnUpgradeOptionsGenerated -=
+                HandleUpgradeOptionsGenerated;
+        }
     }
 
     private void Update()
@@ -45,7 +69,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Game State: " + CurrentState);
     }
-    
+
     private void ApplyState(GameState state)
     {
         switch (state)

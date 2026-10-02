@@ -2,19 +2,43 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPrefab ;
+    [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private float spawnCooldown = 2.5f;
-    
-    [SerializeField] private Transform player;
+
     [SerializeField] private float spawnDistance = 10f;
-    
+
     [SerializeField] private GameManager gameManager;
-    
+
+    private Transform player;
+
     private float spawnTimer;
-    float currentSpawnCooldown;
-    
+    private float currentSpawnCooldown;
+
+    private void OnEnable()
+    {
+        gameManager.OnPlayerSpawned += Initialize;
+    }
+
+    private void OnDisable()
+    {
+        if (gameManager != null)
+        {
+            gameManager.OnPlayerSpawned -= Initialize;
+        }
+    }
+
+    private void Initialize(GameObject playerObject)
+    {
+        player = playerObject.transform;
+    }
+
     private void Update()
     {
+        if (player == null)
+        {
+            return;
+        }
+
         spawnTimer -= Time.deltaTime;
 
         UpdateSpawnDifficulty();
@@ -24,10 +48,12 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
-        Vector2 randomDirection = Random.insideUnitCircle.normalized;
+        Vector2 randomDirection =
+            Random.insideUnitCircle.normalized;
 
         Vector3 spawnPosition =
-            player.position + (Vector3)randomDirection * spawnDistance;
+            player.position +
+            (Vector3)randomDirection * spawnDistance;
 
         GameObject enemy = Instantiate(
             enemyPrefab,
@@ -35,12 +61,14 @@ public class EnemySpawner : MonoBehaviour
             Quaternion.identity
         );
 
-        EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
+        EnemyMovement enemyMovement =
+            enemy.GetComponent<EnemyMovement>();
+
         enemyMovement.SetTarget(player);
 
         spawnTimer = currentSpawnCooldown;
     }
-    
+
     private void UpdateSpawnDifficulty()
     {
         if (gameManager.ElapsedTime < 30)
