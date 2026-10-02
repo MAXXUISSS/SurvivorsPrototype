@@ -4,6 +4,8 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private UpgradeSelectionUI upgradeSelectionUI;
     [SerializeField] private PlayerUpgradeSystem playerUpgradeSystem;
+    
+    [SerializeField] private GameManager gameManager;
 
     private void Awake()
     {
@@ -31,6 +33,8 @@ public class UIManager : MonoBehaviour
         playerUpgradeSystem.SelectUpgrade(index);
 
         HideUpgradeSelection();
+
+        gameManager.ChangeState(GameState.Playing);
     }
 
     public void HideUpgradeSelection()
