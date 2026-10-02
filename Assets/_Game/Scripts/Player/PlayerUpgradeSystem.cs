@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class PlayerUpgradeSystem : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class PlayerUpgradeSystem : MonoBehaviour
     private List<IUpgrade> upgradeOptions;
 
     [SerializeField] private List<UpgradeData> upgradeData;
+    
+    public IReadOnlyList<IUpgrade> UpgradeOptions => upgradeOptions;
+    public event Action OnUpgradeOptionsGenerated;
 
     private UpgradeFactory upgradeFactory;
 
@@ -55,7 +59,10 @@ public class PlayerUpgradeSystem : MonoBehaviour
 
         for (int i = 0; i < optionCount; i++)
         {
-            int randomIndex = Random.Range(0, availableUpgrades.Count);
+            int randomIndex = UnityEngine.Random.Range(
+                0,
+                availableUpgrades.Count
+            );
 
             IUpgrade selectedUpgrade = availableUpgrades[randomIndex];
 
@@ -68,6 +75,7 @@ public class PlayerUpgradeSystem : MonoBehaviour
         {
             Debug.Log("Option: " + upgrade);
         }
+        OnUpgradeOptionsGenerated?.Invoke();
     }
 
     public void SelectUpgrade(int index)

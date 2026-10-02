@@ -4,6 +4,7 @@ public class DamageUpgrade :  IUpgrade
 {
     private PlayerAttack playerAttack;
     private UpgradeData data;
+    public UpgradeData Data => data;
 
     public DamageUpgrade(
         PlayerAttack playerAttack,

@@ -4,6 +4,7 @@ public class AttackSpeedUpgrade : IUpgrade
 {
     private PlayerAttack playerAttack;
     private UpgradeData data; 
+    public UpgradeData Data => data;
 
     public AttackSpeedUpgrade(
         PlayerAttack playerAttack,

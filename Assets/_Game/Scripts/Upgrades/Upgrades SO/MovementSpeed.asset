@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MovementSpeed
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
   upgradeType: 2
-  displayName: Movement Speed
+  displayName: Movement Speed upgrade
   description: Improves Player Movement
   icon: {fileID: 0}
   value: 1

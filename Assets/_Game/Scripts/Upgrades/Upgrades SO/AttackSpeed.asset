@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AttackSpeed
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
   upgradeType: 1
-  displayName: Attack Speed Upgraed
+  displayName: Attack Speed Upgrade
   description: Improves Player Attack Speed
   icon: {fileID: 0}
   value: 0.1
