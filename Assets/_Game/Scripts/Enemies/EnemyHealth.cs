@@ -6,7 +6,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
    
    private int currentHealth;
    
-   public event Action OnDied;
+   public event Action<GameObject> OnDied;
    
    private void Awake()
    {
@@ -25,8 +25,12 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         {
             currentHealth = 0;
             Debug.Log("Enemy Died");
-            OnDied?.Invoke();
-            Destroy(gameObject);
+            OnDied?.Invoke(gameObject);
         }
+    }
+    
+    public void ResetHealth()
+    {
+        currentHealth = maxHealth;
     }
 }

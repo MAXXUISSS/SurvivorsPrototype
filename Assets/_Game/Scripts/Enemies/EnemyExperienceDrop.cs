@@ -17,7 +17,7 @@ public class EnemyExperienceDrop : MonoBehaviour
     {
         enemyHealth.OnDied -= DropExperience;
     }
-    private void DropExperience()
+    private void DropExperience(GameObject enemy)
     {
         Instantiate(
             experienceOrbPrefab,

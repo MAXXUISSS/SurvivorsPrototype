@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private float spawnCooldown = 2.5f;
 
     [SerializeField] private float spawnDistance = 10f;
 
     [SerializeField] private GameManager gameManager;
+    
+    [SerializeField] private EnemyPool enemyPool;
 
     private Transform player;
 
@@ -55,11 +56,15 @@ public class EnemySpawner : MonoBehaviour
             player.position +
             (Vector3)randomDirection * spawnDistance;
 
-        GameObject enemy = Instantiate(
-            enemyPrefab,
-            spawnPosition,
-            Quaternion.identity
-        );
+        GameObject enemy = enemyPool.Get();
+
+        if (enemy == null)
+        {
+            return;
+        }
+
+        enemy.transform.position = spawnPosition;
+        enemy.transform.rotation = Quaternion.identity;
 
         EnemyMovement enemyMovement =
             enemy.GetComponent<EnemyMovement>();
