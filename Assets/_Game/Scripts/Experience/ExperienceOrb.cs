@@ -15,4 +15,8 @@ public class ExperienceOrb : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public void SetExperienceAmount(int amount)
+    {
+        experienceAmount = amount;
+    }
 }
