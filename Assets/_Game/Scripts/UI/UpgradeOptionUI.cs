@@ -5,26 +5,27 @@ using UnityEngine.UI;
 
 public class UpgradeOptionUI : MonoBehaviour
 {
-    
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text descriptionText;
+    [SerializeField] private TMP_Text levelText;
     [SerializeField] private Image iconImage;
-    
-    private UpgradeData upgradeData;
+
+    private IUpgrade upgrade;
     private int optionIndex;
 
     public event Action<int> OnSelected;
 
     public void Setup(
-        UpgradeData data,
+        IUpgrade upgrade,
         int index)
     {
-        upgradeData = data;
+        this.upgrade = upgrade;
         optionIndex = index;
 
-        nameText.text = data.DisplayName;
-        descriptionText.text = data.Description;
-        iconImage.sprite = data.Icon;
+        nameText.text = upgrade.Data.DisplayName;
+        descriptionText.text = upgrade.Data.Description;
+        iconImage.sprite = upgrade.Data.Icon;
+        levelText.text = "Level " + (upgrade.Level + 1);
     }
 
     public void Select()

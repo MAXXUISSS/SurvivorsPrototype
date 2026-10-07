@@ -5,6 +5,10 @@ public class MovementSpeedUpgrade : IUpgrade
     private PlayerMovement playerMovement;
     private UpgradeData data;
     public UpgradeData Data => data;
+    
+    private int level;
+
+    public int Level => level;
 
     public MovementSpeedUpgrade(PlayerMovement playerMovement, UpgradeData upgradeData)
     {
@@ -15,5 +19,6 @@ public class MovementSpeedUpgrade : IUpgrade
     public void Apply()
     {
         playerMovement.IncreaseMovementSpeed(data.Value);
+        level++;
     }
 }

@@ -8,6 +8,7 @@ public class UpgradeSelectionUI : MonoBehaviour
 
     private List<UpgradeOptionUI> optionUIs;
     
+    
     public event Action<int> OnUpgradeSelected;
 
     private void Awake()
@@ -32,7 +33,7 @@ public class UpgradeSelectionUI : MonoBehaviour
                 Instantiate(optionPrefab, optionsContainer);
 
             optionUI.Setup(
-                upgrades[i].Data,
+                upgrades[i],
                 i
             );
 

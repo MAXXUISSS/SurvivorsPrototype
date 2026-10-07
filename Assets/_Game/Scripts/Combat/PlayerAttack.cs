@@ -60,6 +60,13 @@ public class PlayerAttack : MonoBehaviour
     
     public void IncreaseAttackSpeed(float amount)
     {
+        float previousInterval = attackInterval;
+
         attackInterval = Mathf.Max(0.1f, attackInterval - amount);
+
+        Debug.Log(
+            "Attack Interval: " + previousInterval +
+            " → " + attackInterval
+        );
     }
 }

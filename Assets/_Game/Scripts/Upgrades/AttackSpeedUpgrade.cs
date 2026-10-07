@@ -5,6 +5,9 @@ public class AttackSpeedUpgrade : IUpgrade
     private PlayerAttack playerAttack;
     private UpgradeData data; 
     public UpgradeData Data => data;
+    
+    private int level; 
+    public int Level => level;
 
     public AttackSpeedUpgrade(
         PlayerAttack playerAttack,
@@ -16,8 +19,8 @@ public class AttackSpeedUpgrade : IUpgrade
 
     public void Apply()
     {
-        Debug.Log("Attack Speed Upgrade Value: " + data.Value);
-
-        Debug.Log("ATTACKSPEED UPGRADE" + data.Value);
+        playerAttack.IncreaseAttackSpeed(data.Value);
+        level++;
+       
     }
 }

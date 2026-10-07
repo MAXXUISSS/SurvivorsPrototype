@@ -9,7 +9,6 @@ public class PlayerUpgradeSystem : MonoBehaviour
     private PlayerMovement playerMovement;
 
     private List<IUpgrade> upgrades;
-    private List<IUpgrade> availableUpgrades;
     private List<IUpgrade> upgradeOptions;
 
     [SerializeField] private List<UpgradeData> upgradeData;
@@ -53,9 +52,14 @@ public class PlayerUpgradeSystem : MonoBehaviour
     private void GenerateUpgradeOptions()
     {
         upgradeOptions = new List<IUpgrade>();
-        availableUpgrades = new List<IUpgrade>(upgrades);
 
-        int optionCount = Mathf.Min(3, availableUpgrades.Count);
+        List<IUpgrade> availableUpgrades =
+            new List<IUpgrade>(upgrades);
+
+        int optionCount = Mathf.Min(
+            3,
+            availableUpgrades.Count
+        );
 
         for (int i = 0; i < optionCount; i++)
         {
@@ -64,7 +68,8 @@ public class PlayerUpgradeSystem : MonoBehaviour
                 availableUpgrades.Count
             );
 
-            IUpgrade selectedUpgrade = availableUpgrades[randomIndex];
+            IUpgrade selectedUpgrade =
+                availableUpgrades[randomIndex];
 
             upgradeOptions.Add(selectedUpgrade);
 
@@ -75,6 +80,7 @@ public class PlayerUpgradeSystem : MonoBehaviour
         {
             Debug.Log("Option: " + upgrade);
         }
+
         OnUpgradeOptionsGenerated?.Invoke();
     }
 
@@ -82,9 +88,21 @@ public class PlayerUpgradeSystem : MonoBehaviour
     {
         if (index >= 0 && index < upgradeOptions.Count)
         {
-            Debug.Log("Applying upgrade: " + upgradeOptions[index]);
+            IUpgrade selectedUpgrade = upgradeOptions[index];
 
-            upgradeOptions[index].Apply();
+            Debug.Log(
+                "Applying upgrade: " +
+                selectedUpgrade.Data.DisplayName +
+                " | Level: " +
+                (selectedUpgrade.Level + 1)
+            );
+
+            selectedUpgrade.Apply();
+
+            Debug.Log(
+                "Upgrade Level after apply: " +
+                selectedUpgrade.Level
+            );
         }
     }
 }
