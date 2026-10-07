@@ -28,6 +28,8 @@ public class UpgradeFactory
                 return new MovementSpeedUpgrade(playerMovement, data);
             case UpgradeType.MaxHealth:
                 return new MaxHealthUpgrade(data, playerHealth);
+            case UpgradeType.HealthRegen:
+                return new HealPerSecondUpgrade(data, playerHealth);
         }
 
         return null;

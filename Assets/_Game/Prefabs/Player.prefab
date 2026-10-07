@@ -220,6 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 100
   currentHealth: 0
+  healPerSecond: 0
 --- !u!114 &451931764543262760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,3 +271,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 834ec5edeb20e4943a0a5c7fe4b8dc65, type: 2}
   - {fileID: 11400000, guid: db22cefc74263084a9fad7381bcf42cd, type: 2}
   - {fileID: 11400000, guid: f4a9dbe366d2adc4e8c10dd3dfeebdba, type: 2}
+  - {fileID: 11400000, guid: 77fa25ad1154069458645a19bae4c2b0, type: 2}
