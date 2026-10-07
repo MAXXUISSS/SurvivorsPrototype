@@ -17,12 +17,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     }
     private void Update()
     {
-        
-        Debug.Log(
-            "Health: " + currentHealth +
-            " / " + maxHealth +
-            " | Heal/sec: " + healPerSecond
-        );
         if (currentHealth >= maxHealth)
         {
             healAccumulator = 0f;

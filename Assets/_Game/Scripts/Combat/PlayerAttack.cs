@@ -69,4 +69,20 @@ public class PlayerAttack : MonoBehaviour
             " → " + attackInterval
         );
     }
+    public void IncreaseAttackRange(float amount)
+    {
+        if (amount <= 0f)
+            return;
+
+        float previousRange = attackRange;
+
+        attackRange += amount;
+
+        Debug.Log(
+            "Attack Range: " +
+            previousRange +
+            " → " +
+            attackRange
+        );
+    }
 }

@@ -5,7 +5,8 @@ public enum UpgradeType
     AttackSpeed,
     MovementSpeed,
     MaxHealth,
-    HealthRegen
+    HealthRegen,
+    AttackRange,
 }
 
 [CreateAssetMenu(

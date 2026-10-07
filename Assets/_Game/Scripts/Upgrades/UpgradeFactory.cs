@@ -30,6 +30,8 @@ public class UpgradeFactory
                 return new MaxHealthUpgrade(data, playerHealth);
             case UpgradeType.HealthRegen:
                 return new HealPerSecondUpgrade(data, playerHealth);
+            case UpgradeType.AttackRange:
+                return new AttackRangeUpgrade(data, playerAttack);
         }
 
         return null;
