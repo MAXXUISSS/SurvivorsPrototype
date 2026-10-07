@@ -3,7 +3,8 @@ public enum UpgradeType
 {
     Damage,
     AttackSpeed,
-    MovementSpeed
+    MovementSpeed,
+    MaxHealth,
 }
 
 [CreateAssetMenu(

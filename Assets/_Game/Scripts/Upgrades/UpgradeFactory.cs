@@ -2,13 +2,16 @@ public class UpgradeFactory
 {
     private PlayerAttack playerAttack;
     private PlayerMovement playerMovement;
+    private PlayerHealth playerHealth;
 
     public UpgradeFactory(
         PlayerAttack playerAttack,
-        PlayerMovement playerMovement)
+        PlayerMovement playerMovement,
+        PlayerHealth playerHealth)
     {
         this.playerAttack = playerAttack;
         this.playerMovement = playerMovement;
+        this.playerHealth = playerHealth;
     }
     
     public IUpgrade Create(UpgradeData data)
@@ -23,6 +26,8 @@ public class UpgradeFactory
 
             case UpgradeType.MovementSpeed:
                 return new MovementSpeedUpgrade(playerMovement, data);
+            case UpgradeType.MaxHealth:
+                return new MaxHealthUpgrade(data, playerHealth);
         }
 
         return null;

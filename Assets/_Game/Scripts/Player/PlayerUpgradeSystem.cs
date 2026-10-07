@@ -7,6 +7,7 @@ public class PlayerUpgradeSystem : MonoBehaviour
     private PlayerAttack playerAttack;
     private PlayerExperience playerExperience;
     private PlayerMovement playerMovement;
+    private PlayerHealth playerHealth;
 
     private List<IUpgrade> upgrades;
     private List<IUpgrade> upgradeOptions;
@@ -23,12 +24,14 @@ public class PlayerUpgradeSystem : MonoBehaviour
         playerAttack = GetComponent<PlayerAttack>();
         playerExperience = GetComponent<PlayerExperience>();
         playerMovement = GetComponent<PlayerMovement>();
+        playerHealth = GetComponent<PlayerHealth>();
 
         upgrades = new List<IUpgrade>();
 
         upgradeFactory = new UpgradeFactory(
             playerAttack,
-            playerMovement
+            playerMovement,
+            playerHealth
         );
 
         foreach (UpgradeData data in upgradeData)

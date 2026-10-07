@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
@@ -27,5 +26,21 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             currentHealth = 0;
             Debug.Log("Player Died");
         }
+    }
+    public void IncreaseMaxHealth(int amount)
+    {
+        if (amount <= 0)
+            return;
+
+        int previousHealth = maxHealth;
+
+        maxHealth += amount;
+
+        Debug.Log(
+            "Max Health: " +
+            previousHealth +
+            " → " +
+            maxHealth
+        );
     }
 }
